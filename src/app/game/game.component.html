@@ -1,1 +1,12 @@
-<p>game works!</p>
+<div  class="playground">
+    <div class="card-steck">
+        <ng-container *ngFor="let cart of [0,1,2,3,4]; let i = index;">
+            <img [style.right.px]="i * 4" src="cards/card_cover.png" alt="">
+        </ng-container>
+        <img (click)="takeCard()" class="top-card"  src="cards/card_cover.png" alt="">
+        <ng-container *ngFor="let c of game.playedCards">
+            <img class="picked-card"  src="cards/{{ c }}.png" alt="">
+        </ng-container>
+        <img *ngIf="takeCardAnimation" class="pick-card" src="cards/{{ currentCard }}.png" alt="">
+    </div>
+</div>
