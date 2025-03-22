@@ -1,3 +1,9 @@
+
+<ng-container *ngFor="let player of game.players; let i = index">
+    <app-player [player]="player" class="player-positioning" [style.top.px]="(i + 1) * 120"></app-player>
+</ng-container>
+
+
 <div  class="playground">
     <div class="card-steck">
         <ng-container *ngFor="let cart of [0,1,2,3,4]; let i = index;">
@@ -10,3 +16,7 @@
         <img *ngIf="takeCardAnimation" class="pick-card" src="cards/{{ currentCard }}.png" alt="">
     </div>
 </div>
+
+<button mat-fab class="add-button-positioning" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+  </button>

@@ -1,5 +1,7 @@
+import { PlayerModel } from "./player.model";
+
 export class Game {
-    public players: string[] = [];
+    public players: PlayerModel[] = [];
     public stack: string[] = [];
     public playedCards: string[] = [];
     public currentPlayers: number = 0;

@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Add new player</h2>
+<mat-dialog-content>
+  <p>Please enter the name of a player</p>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="name" />
+  </mat-form-field>
+  <p></p>
+<mat-form-field>
+  <mat-label>choose your color</mat-label>
+  <mat-select [(ngModel)]="color"[style.color]=selectedColor>
+    @for (color of colors; track color) {
+      <mat-option [value]="color.value" [style.background-color]=color.value (click)="changecolor(color.value)">{{color.viewValue}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+  
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="{name: name(), color: color()}" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
