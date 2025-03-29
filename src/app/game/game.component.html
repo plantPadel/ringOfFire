@@ -1,6 +1,6 @@
 
 <ng-container *ngFor="let player of game.players; let i = index">
-    <app-player [player]="player" class="player-positioning" [style.top.px]="(i + 1) * 120"></app-player>
+    <app-player [player]="player" [playerActive]="i == game.currentPlayer"  class="player-positioning" [style.top.px]="(i + 1) * 80"></app-player>
 </ng-container>
 
 
@@ -20,3 +20,5 @@
 <button mat-fab class="add-button-positioning" (click)="openDialog()">
     <mat-icon>add</mat-icon>
   </button>
+
+  <app-game-info *ngIf="" class="pin-botton" [card]="currentCard"></app-game-info>

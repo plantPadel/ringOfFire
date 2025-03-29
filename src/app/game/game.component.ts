@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, model, signal } from '@angular/core';
 import { Game } from '../../models/game';
-import { timeout } from 'rxjs';
+
 import { PlayerComponent } from "../player/player.component";
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatIconModule} from '@angular/material/icon';
@@ -18,10 +18,11 @@ import {
 } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { PlayerModel } from '../../models/player.model';
+import { GameInfoComponent } from "../game-info/game-info.component";
 
 @Component({
   selector: 'app-game',
-  imports: [CommonModule, PlayerComponent, MatSlideToggleModule, MatButtonModule, MatDividerModule, MatIconModule],
+  imports: [CommonModule, PlayerComponent, GameInfoComponent, MatSlideToggleModule, MatButtonModule, MatDividerModule, MatIconModule, GameInfoComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
@@ -37,15 +38,21 @@ export class GameComponent {
     this.game = new Game();
   }
   takeCard() {
-    if (!this.takeCardAnimation) { 
-      this.currentCard = this.game.stack.pop();
-      this.takeCardAnimation = true;
-      setTimeout(()=>{
-        this.takeCardAnimation = false;
-        if (this.currentCard) {
-          this.game.playedCards.push(this.currentCard);
-        }
-      },1500)
+    if (this.game.players.length > 0) {
+      if (!this.takeCardAnimation) { 
+        this.currentCard = this.game.stack.pop();
+        this.takeCardAnimation = true;
+        setTimeout(()=>{
+          this.takeCardAnimation = false;
+          if (this.currentCard) {
+            this.game.playedCards.push(this.currentCard);
+          }
+          this.game.currentPlayer ++;
+            this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+        },1500)
+      }
+    } else {
+      alert("Please create players");
     }
   }
 
@@ -55,7 +62,6 @@ export class GameComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result) {
         this.game.players.push(result);
       }

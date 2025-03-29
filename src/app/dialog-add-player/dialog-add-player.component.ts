@@ -54,13 +54,7 @@ export class DialogAddPlayerComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
-  selectedColorCss(): string {
-    const selected = this.colors.find(this.color);
-  console.log(selected);
-    return "blue";
-  }
-
+  
   changecolor(color: string) {
     this.selectedColor = color
   }

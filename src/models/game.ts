@@ -4,7 +4,7 @@ export class Game {
     public players: PlayerModel[] = [];
     public stack: string[] = [];
     public playedCards: string[] = [];
-    public currentPlayers: number = 0;
+    public currentPlayer: number = 0;
 
     constructor() {
 
